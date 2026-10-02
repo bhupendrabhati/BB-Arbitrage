@@ -126,3 +126,4 @@ terraform.rc
 # Local private keys
 *.pem
 bb-arbitrage-key.pem
+.env.ci
