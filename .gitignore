@@ -105,3 +105,23 @@ blob-report/
 
 Guide.md
 AWS-Guide.md
+# ---------- Terraform ----------
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+!*.tfvars.example
+.terraform/
+.terraform.lock.hcl
+*.tfplan
+tfplan
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+# Local private keys
+*.pem
+bb-arbitrage-key.pem
