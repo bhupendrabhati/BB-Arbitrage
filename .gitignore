@@ -105,6 +105,7 @@ blob-report/
 
 Guide.md
 AWS-Guide.md
+
 # ---------- Terraform ----------
 *.tfstate
 *.tfstate.*
