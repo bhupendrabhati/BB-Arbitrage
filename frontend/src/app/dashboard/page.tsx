@@ -17,7 +17,7 @@ import {
 export default function DashboardPage() {
   const [demoStarted, setDemoStarted] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [portfolio, setPortfolio] = useState<{ capital: string; total_pnl: string; total_trades: number; winning_trades: number; losing_trades: number; win_rate: string } | null>(null);
+  const [portfolio, setPortfolio] = useState<{ capital: string; initial_capital: string; total_pnl: string; total_trades: number; winning_trades: number; losing_trades: number; win_rate: string } | null>(null);
   const [risk, setRisk] = useState<{ daily_pnl: string; kill_switch_active: boolean; daily_trades: number; max_trades_per_day: number; open_trades: number; max_open_trades: number } | null>(null);
   const [oppCount, setOppCount] = useState({ total: 0, executable: 0 });
   const [capHistory, setCapHistory] = useState<{ name: string; value: number }[]>([]);
@@ -39,10 +39,11 @@ export default function DashboardPage() {
         setHealth(h);
         setPortfolio({
           capital: demo.paper_trading.capital,
+          initial_capital: demo.paper_trading.initial_capital ?? "0",
           total_pnl: demo.paper_trading.total_pnl,
-          total_trades: demo.paper_trading.total_trades,
-          winning_trades: demo.paper_trading.winning_trades,
-          losing_trades: demo.paper_trading.losing_trades,
+          total_trades: Number(demo.paper_trading.total_trades),
+          winning_trades: Number(demo.paper_trading.winning_trades),
+          losing_trades: Number(demo.paper_trading.losing_trades),
           win_rate: demo.paper_trading.win_rate,
         });
         setRisk({
@@ -56,10 +57,10 @@ export default function DashboardPage() {
 
         try {
           const opps = await api.demoOpportunities();
-          const all = opps.opportunities || [];
+          const all = (opps.opportunities || []) as Record<string, unknown>[];
           setOppCount({
             total: all.length,
-            executable: all.filter((o: Record<string, string>) => o.status === "executable").length,
+            executable: all.filter((o) => o.status === "executable").length,
           });
         } catch {}
 

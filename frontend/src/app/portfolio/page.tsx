@@ -29,16 +29,16 @@ export default function PortfolioPage() {
   useEffect(() => {
     const load = async () => {
       try {
-        let data;
+        let data: PortfolioData;
         try {
           const demo = await api.demoPortfolio();
           data = {
             initial_capital: demo.portfolio.initial_capital,
             current_capital: demo.portfolio.current_capital,
             total_pnl: demo.paper_trading.total_pnl,
-            total_trades: demo.paper_trading.total_trades,
-            winning_trades: demo.paper_trading.winning_trades,
-            losing_trades: demo.paper_trading.losing_trades,
+            total_trades: Number(demo.paper_trading.total_trades),
+            winning_trades: Number(demo.paper_trading.winning_trades),
+            losing_trades: Number(demo.paper_trading.losing_trades),
             win_rate: demo.paper_trading.win_rate,
             max_drawdown: "0",
           };

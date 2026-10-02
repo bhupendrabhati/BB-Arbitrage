@@ -104,3 +104,4 @@ blob-report/
 .terraform.tfstate.lock.info
 
 Guide.md
+AWS-Guide.md

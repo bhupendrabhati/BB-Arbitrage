@@ -8,7 +8,12 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-target_metadata = None
+from app.config.settings import settings
+from app.models.user import Base
+import app.models  # noqa: F401  registers all models on Base.metadata
+
+target_metadata = Base.metadata
+config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
 
 def run_migrations_offline() -> None:
     url = config.get_main_option("sqlalchemy.url")

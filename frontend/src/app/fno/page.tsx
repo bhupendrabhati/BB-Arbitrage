@@ -419,7 +419,7 @@ export default function FnOPage() {
                         <CartesianGrid strokeDasharray="3 3" stroke="#222240" />
                         <XAxis dataKey="price" stroke="#64748b" fontSize={10} tickFormatter={v => `₹${v}`} />
                         <YAxis stroke="#64748b" fontSize={10} tickFormatter={v => `₹${v}`} />
-                        <Tooltip contentStyle={{ background: "#1a1a2e", border: "1px solid #222240", borderRadius: "8px", color: "#e2e8f0" }} formatter={(v: number) => [`₹${v.toFixed(0)}`, "P&L"]} />
+                        <Tooltip contentStyle={{ background: "#1a1a2e", border: "1px solid #222240", borderRadius: "8px", color: "#e2e8f0" }} formatter={(v) => [`₹${Number(v ?? 0).toFixed(0)}`, "P&L"]} />
                         <ReferenceLine y={0} stroke="#475569" />
                         <Area type="monotone" dataKey="pnl" stroke="#3b82f6" fill="url(#pnlGrad)" strokeWidth={2} />
                       </AreaChart>
